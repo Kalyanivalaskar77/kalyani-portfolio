@@ -26,18 +26,23 @@ html {
   scroll-behavior: smooth;
 }
 
+/* --- Vertical Left Sidebar Header --- */
 .portfolio-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
   z-index: 1000;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 8%;
-  background: rgba(255, 255, 255, 0.85);
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 50px 30px;
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 4px 0 6px -1px rgba(0, 0, 0, 0.02);
 }
 
 .logo {
@@ -47,42 +52,33 @@ html {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: -1px;
+  margin-bottom: 50px; /* Added space below logo for vertical layout */
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 30px;
-}
-
-.nav-links a {
-  color: var(--text-main);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background-color: var(--primary);
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: var(--primary);
-}
-
-.nav-links a:hover::after {
+  flex-direction: column; /* Stack links vertically */
+  gap: 25px;
   width: 100%;
 }
 
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.05rem;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+/* Replaced underline effect with a smooth left-slide effect for the vertical menu */
+.nav-links a:hover {
+  color: var(--primary);
+  padding-left: 12px;
+}
+
+/* --- Hero Section --- */
 .hero-section {
   min-height: 90vh;
   display: flex;
@@ -116,6 +112,7 @@ html {
   margin-bottom: 40px;
 }
 
+/* --- Buttons --- */
 .primary-btn {
   padding: 14px 36px;
   font-size: 1.05rem;
@@ -128,6 +125,7 @@ html {
   text-decoration: none;
   box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
   transition: all 0.3s ease;
+  display: inline-block;
 }
 
 .primary-btn:hover {
@@ -136,6 +134,27 @@ html {
   background: var(--primary-dark);
 }
 
+.secondary-btn {
+  padding: 14px 36px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  background: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--text-main);
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.secondary-btn:hover {
+  background: var(--text-main);
+  color: var(--bg-color);
+  transform: translateY(-3px);
+}
+
+/* --- Sections --- */
 .section {
   padding: 100px 8%;
 }
@@ -152,6 +171,7 @@ html {
   color: var(--text-main);
 }
 
+/* --- Timeline --- */
 .timeline-container {
   max-width: 800px;
   margin: 0 auto;
@@ -192,6 +212,7 @@ html {
 .timeline-org { font-size: 1rem; color: var(--primary); font-weight: 500; margin-bottom: 10px; }
 .timeline-date { font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 15px; }
 
+/* --- Projects --- */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -243,6 +264,7 @@ html {
 
 .project-link:hover { color: var(--primary); }
 
+/* --- Skills --- */
 .skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -271,6 +293,7 @@ html {
   border-color: var(--primary);
 }
 
+/* --- Footer --- */
 .portfolio-footer {
   background: #0f172a;
   color: white;
@@ -281,29 +304,40 @@ html {
 .portfolio-footer h2 { font-size: 2.5rem; margin-bottom: 20px; }
 .portfolio-footer p { color: #94a3b8; margin-bottom: 40px; }
 
-@media (max-width: 768px) {
-  .hero-section h2 { font-size: 3rem; }
-  .nav-links { display: none; }
-  .timeline-container { padding-left: 20px; }
-  .timeline-item::before { left: -28px; }
-}
-/* Add this right below your .primary-btn CSS */
-.secondary-btn {
-  padding: 14px 36px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  background: transparent;
-  color: var(--text-main);
-  border: 2px solid var(--text-main); /* Outline style */
-  border-radius: 50px; /* Change to 0 or 4px depending on which theme you kept */
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  display: inline-block;
+/* --- Layout Shift for Sidebar --- */
+.App {
+  margin-left: 250px; /* Pushes the entire website to the right to make room for the 250px sidebar */
 }
 
-.secondary-btn:hover {
-  background: var(--text-main);
-  color: var(--bg-color);
-  transform: translateY(-3px);
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  /* Turn the sidebar back into a top navigation bar for small screens */
+  .portfolio-header {
+    width: 100%;
+    height: auto;
+    position: sticky;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 5%;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  }
+  
+  .logo {
+    margin-bottom: 0;
+  }
+
+  .nav-links { 
+    display: none; /* Hide menu links on mobile to save space */
+  }
+
+  .App {
+    margin-left: 0; /* Remove the left margin on mobile */
+  }
+
+  .hero-section h2 { font-size: 3rem; }
+  .timeline-container { padding-left: 20px; }
+  .timeline-item::before { left: -28px; }
 }
