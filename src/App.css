@@ -287,3 +287,23 @@ html {
   .timeline-container { padding-left: 20px; }
   .timeline-item::before { left: -28px; }
 }
+/* Add this right below your .primary-btn CSS */
+.secondary-btn {
+  padding: 14px 36px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  background: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--text-main); /* Outline style */
+  border-radius: 50px; /* Change to 0 or 4px depending on which theme you kept */
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.secondary-btn:hover {
+  background: var(--text-main);
+  color: var(--bg-color);
+  transform: translateY(-3px);
+}
